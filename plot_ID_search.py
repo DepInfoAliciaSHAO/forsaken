@@ -36,6 +36,7 @@ if not os.path.exists(output_dir):
 # 1. Forget Accuracy vs T for each xi, varying lambda_ and eta_mu
 xi_vals = df['xi'].unique()  # Get all unique xi values
 
+# 1. Forget Accuracy vs T for each xi, varying lambda_ and eta_mu
 for xi in xi_vals:
     df_filtered = df[df['xi'] == xi]
     
@@ -60,6 +61,17 @@ for xi in xi_vals:
     plt.legend(title="Lambda & Eta_mu", loc="upper left", fontsize=10, bbox_to_anchor=(1, 1))  # Moved legend outside
     plt.tight_layout()
     plt.savefig(f"{output_dir}/verification_error_vs_T_xi_{xi}_log_y.png")  # Save the plot with log scale y
+    plt.close()  # Close the plot to free memory
+    
+    # Plot Test Accuracy
+    plt.figure(figsize=(10, 6))
+    sns.lineplot(data=df_filtered, x="T", y="test_acc", hue="lambda_", style="eta_mu", markers=True, dashes=False, palette="tab10")
+    plt.title(f"Test Accuracy vs T for xi = {xi}", fontsize=14)
+    plt.xlabel("T", fontsize=12)
+    plt.ylabel("Test Accuracy", fontsize=12)
+    plt.legend(title="Lambda & Eta_mu", loc="upper left", fontsize=10, bbox_to_anchor=(1, 1))  # Moved legend outside
+    plt.tight_layout()
+    plt.savefig(f"{output_dir}/test_accuracy_vs_T_xi_{xi}.png")  # Save the plot
     plt.close()  # Close the plot to free memory
 
 # 2. Forget Accuracy vs lambda_ for each xi, varying T and eta_mu (log scale for x-axis)
@@ -90,6 +102,18 @@ for xi in xi_vals:
     plt.tight_layout()
     plt.savefig(f"{output_dir}/verification_error_vs_lambda_xi_{xi}_log_x_log_y.png")  # Save the plot with log scale x and y
     plt.close()  # Close the plot to free memory
+    
+    # Plot Test Accuracy
+    plt.figure(figsize=(10, 6))
+    sns.lineplot(data=df_filtered, x="lambda_", y="test_acc", hue="T", style="eta_mu", markers=True, dashes=False, palette="tab10")
+    plt.title(f"Test Accuracy vs Lambda for xi = {xi}", fontsize=14)
+    plt.xlabel("Lambda", fontsize=12)
+    plt.ylabel("Test Accuracy", fontsize=12)
+    plt.xscale("log")  # Set x-axis to log scale
+    plt.legend(title="T & Eta_mu", loc="upper left", fontsize=10, bbox_to_anchor=(1, 1))  # Moved legend outside
+    plt.tight_layout()
+    plt.savefig(f"{output_dir}/test_accuracy_vs_lambda_xi_{xi}_log_x.png")  # Save the plot
+    plt.close()  # Close the plot to free memory
 
 # 3. Forget Accuracy vs eta_mu for each xi, varying lambda_ and T (log scale for x-axis)
 for xi in xi_vals:
@@ -118,4 +142,16 @@ for xi in xi_vals:
     plt.legend(title="Lambda & T", loc="upper left", fontsize=10, bbox_to_anchor=(1, 1))  # Moved legend outside
     plt.tight_layout()
     plt.savefig(f"{output_dir}/verification_error_vs_eta_mu_xi_{xi}_log_x_log_y.png")  # Save the plot with log scale x and y
+    plt.close()  # Close the plot to free memory
+    
+    # Plot Test Accuracy
+    plt.figure(figsize=(10, 6))
+    sns.lineplot(data=df_filtered, x="eta_mu", y="test_acc", hue="lambda_", style="T", markers=True, dashes=False, palette="tab10")
+    plt.title(f"Test Accuracy vs Eta_mu for xi = {xi}", fontsize=14)
+    plt.xlabel("Eta_mu", fontsize=12)
+    plt.ylabel("Test Accuracy", fontsize=12)
+    plt.xscale("log")  # Set x-axis to log scale
+    plt.legend(title="Lambda & T", loc="upper left", fontsize=10, bbox_to_anchor=(1, 1))  # Moved legend outside
+    plt.tight_layout()
+    plt.savefig(f"{output_dir}/test_accuracy_vs_eta_mu_xi_{xi}_log_x.png")  # Save the plot
     plt.close()  # Close the plot to free memory
