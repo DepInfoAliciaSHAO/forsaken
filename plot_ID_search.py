@@ -52,7 +52,7 @@ for xi in xi_vals:
     
     # Plot Verification Error with log scale on y-axis
     plt.figure(figsize=(10, 6))
-    sns.lineplot(data=df_filtered, x="T", y="verification_err", hue="lambda_", style="eta_mu", markers=True, dashes=False, palette="tab20")
+    sns.lineplot(data=df_filtered, x="T", y="verification_err", hue="lambda_", style="eta_mu", markers=True, dashes=False, palette="tab10")
     plt.title(f"Verification Error vs T for xi = {xi}", fontsize=14)
     plt.xlabel("T", fontsize=12)
     plt.ylabel("Verification Error", fontsize=12)
@@ -80,7 +80,7 @@ for xi in xi_vals:
     
     # Plot Verification Error with log scale on y-axis
     plt.figure(figsize=(10, 6))
-    sns.lineplot(data=df_filtered, x="lambda_", y="verification_err", hue="T", style="eta_mu", markers=True, dashes=False, palette="tab20")
+    sns.lineplot(data=df_filtered, x="lambda_", y="verification_err", hue="T", style="eta_mu", markers=True, dashes=False, palette="tab10")
     plt.title(f"Verification Error vs Lambda for xi = {xi}", fontsize=14)
     plt.xlabel("Lambda", fontsize=12)
     plt.ylabel("Verification Error", fontsize=12)
@@ -109,7 +109,7 @@ for xi in xi_vals:
     
     # Plot Verification Error with log scale on y-axis
     plt.figure(figsize=(10, 6))
-    sns.lineplot(data=df_filtered, x="eta_mu", y="verification_err", hue="lambda_", style="T", markers=True, dashes=False, palette="tab20")
+    sns.lineplot(data=df_filtered, x="eta_mu", y="verification_err", hue="lambda_", style="T", markers=True, dashes=False, palette="tab10")
     plt.title(f"Verification Error vs Eta_mu for xi = {xi}", fontsize=14)
     plt.xlabel("Eta_mu", fontsize=12)
     plt.ylabel("Verification Error", fontsize=12)
